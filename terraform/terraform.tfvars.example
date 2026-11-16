@@ -1,0 +1,14 @@
+project_name          = "lumina"
+environment           = "prod"
+vpc_id                = "vpc-0123456789abcdef0"
+subnet_ids            = ["subnet-0123456789abcdef1", "subnet-0123456789abcdef2"]
+db_sg_id              = "sg-0123456789abcdef3"
+db_host               = "10.0.20.10"
+db_port               = "3306"
+db_name               = "Lumina"
+db_user               = "lumina_user"
+db_password           = "CHANGE_ME_STRONG_PASSWORD"
+backup_bucket_name    = "lumina-sptech-backup-prod"
+backup_retention_days = 30
+admin_email           = "grupo5pi-2ccoa@outlook.com"
+schedule_expression   = "cron(0 6 * * ? *)"

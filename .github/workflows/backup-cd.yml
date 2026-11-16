@@ -1,0 +1,53 @@
+name: "Lambda Backup CD (Deploy Rapido na AWS Lambda)"
+
+on:
+  workflow_dispatch:
+    inputs:
+      function_name:
+        description: "Nome da Funcao Lambda na AWS"
+        required: true
+        default: "lumina-backup-prod"
+        type: string
+      aws_access_key_id:
+        description: "AWS Access Key ID (Lab)"
+        required: true
+        type: string
+      aws_secret_access_key:
+        description: "AWS Secret Access Key"
+        required: true
+        type: string
+      aws_session_token:
+        description: "AWS Session Token"
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    name: "Atualizar Codigo da Lambda (${{ inputs.function_name }})"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do Repositorio
+        uses: actions/checkout@v4
+
+      - name: Autenticar na AWS (Credenciais do Lab)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ inputs.aws_access_key_id }}
+          aws-secret-access-key: ${{ inputs.aws_secret_access_key }}
+          aws-session-token: ${{ inputs.aws_session_token }}
+          aws-region: "us-east-1"
+
+      - name: Empacotar Artefato (.zip)
+        run: |
+          mkdir -p dist
+          cd src
+          zip -r ../dist/lambda_backup.zip . -x "*__pycache__*" "*.pyc"
+
+      - name: Atualizar Codigo na AWS Lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name "${{ inputs.function_name }}" \
+            --zip-file fileb://dist/lambda_backup.zip
+
+      - name: Sucesso
+        run: echo "✅ Codigo da Lambda ${{ inputs.function_name }} atualizado com sucesso!"
