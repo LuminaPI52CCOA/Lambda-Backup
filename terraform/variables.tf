@@ -75,7 +75,7 @@ variable "backup_retention_days" {
 variable "admin_email" {
   type        = string
   description = "E-mail do administrador para receber notificacoes via Amazon SNS"
-  default     = "grupo5pi-2ccoa@outlook.com"
+  default     = "grupo5pi-2ccoa@sptech.school"
 }
 
 variable "schedule_expression" {

@@ -10,5 +10,5 @@ db_user               = "lumina_user"
 db_password           = "CHANGE_ME_STRONG_PASSWORD"
 backup_bucket_name    = "lumina-sptech-backup-prod"
 backup_retention_days = 30
-admin_email           = "grupo5pi-2ccoa@outlook.com"
+admin_email           = "grupo5pi-2ccoa@sptech.school"
 schedule_expression   = "cron(0 6 * * ? *)"

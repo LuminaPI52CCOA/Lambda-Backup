@@ -15,7 +15,7 @@ Repositório oficial do componente serverless responsável pelo backup diário a
    - Faz o upload com criptografia `AES256` para o bucket exclusivo `lumina-sptech-backup-prod-<account_id>` através do **VPC Endpoint Gateway S3** (sem custo de tráfego NAT).
    - Regra de Ciclo de Vida (**Estratégia A**): Expiração automática após **30 dias**.
 4. **Notificação (Amazon SNS):**
-   - Publica relatório de **SUCESSO** (com nome do arquivo, tamanho em MB, URI S3 e horário BRT) ou alerta de **FALHA** (com motivo e traceback) no tópico `lumina-backup-notifications-prod`, encaminhado para `grupo5pi-2ccoa@outlook.com`.
+   - Publica relatório de **SUCESSO** (com nome do arquivo, tamanho em MB, URI S3 e horário BRT) ou alerta de **FALHA** (com motivo e traceback) no tópico `lumina-backup-notifications-prod`, encaminhado para `grupo5pi-2ccoa@sptech.school`.
 
 > **Nota de Governança:** Em conformidade com as restrições arquiteturais do projeto Lumina, este componente é provisionado **exclusivamente no ambiente `prod`**, sendo omitido em `dev`.
 
